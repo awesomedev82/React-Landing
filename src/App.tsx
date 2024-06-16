@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/Home/Home";
 
 function App() {
   return (
-    <div className="App">
-      <header className="bg-blue-500 text-white p-5 text-xl">
-        Hello, React with TypeScript and Tailwind!
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
