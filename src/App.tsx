@@ -1,15 +1,20 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./components/Home/Home";
+import React, { useState } from 'react'
+import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainPage from './component/mainpage.tsx';
 
 function App() {
+
   return (
-    <Router>
+    <>
+       <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<MainPage />} />
       </Routes>
-    </Router>
-  );
+    </BrowserRouter>
+
+    </>
+  )
 }
 
-export default App;
+export default App
