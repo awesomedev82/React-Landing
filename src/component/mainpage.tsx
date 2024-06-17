@@ -20,7 +20,8 @@ interface Tier {
   name: string;
   id: string;
   href: string;
-  priceMonthly: string;
+  price: string;
+  period: string;
   description: string;
   features: string[];
   featured: boolean;
@@ -90,9 +91,21 @@ const tiers: Tier[] = [
     name: "Price",
     id: "tier-enterprise",
     href: "#",
-    priceMonthly: "1 ETH",
+    price: "1 ETH",
+    period: 'month',
     description:
       "Invest in your trading success with our straightforward, value-driven pricing. For just 1 ETH per month, you receive unparalleled service and support.",
+    features: [],
+    featured: true,
+  },
+  {
+    name: "Price",
+    id: "tier-enterprise",
+    href: "#",
+    price: "10 ETH",
+    period: 'year',
+    description:
+      "Invest in your trading success with our straightforward, value-driven pricing. For just 10 ETH per year, you receive unparalleled service and support.",
     features: [],
     featured: true,
   },
@@ -368,7 +381,7 @@ export default function Example() {
             Qui iusto aut est earum eos quae. Eligendi est at nam aliquid ad quo
             reprehenderit in aliquid fugiat dolorum voluptatibus.
           </p>
-          <div className="mx-auto mt-8  lg:ml-[500px] grid max-w-lg items-center sm:mt-20  lg:max-w-4xl lg:grid-cols-2">
+          <div className="mx-auto mt-8  lg:ml-[500px] grid max-w-lg items-center sm:mt-20 gap-20  lg:max-w-4xl lg:grid-cols-2">
             {tiers.map((tier, tierIdx) => (
               <div
                 key={tier.id}
@@ -400,7 +413,7 @@ export default function Example() {
                       "text-5xl font-bold tracking-tight"
                     )}
                   >
-                    {tier.priceMonthly}
+                    {tier.price}
                   </span>
                   <span
                     className={classNames(
@@ -408,7 +421,7 @@ export default function Example() {
                       "text-base"
                     )}
                   >
-                    /month
+                    /{tier.period}
                   </span>
                 </p>
                 <p
