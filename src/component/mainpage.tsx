@@ -312,7 +312,7 @@ export default function Example() {
         </div>
 
         {/* Feature section */}
-        <div className="mx-auto max-w-7xl px-6 sm:mt-24 lg:px-8">
+        <div id="features" className="mx-auto max-w-7xl px-6 sm:mt-24 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Everything you need to know
