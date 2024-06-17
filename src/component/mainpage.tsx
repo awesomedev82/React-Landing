@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Dialog, DialogPanel } from "@headlessui/react";
+import { useState, Fragment } from "react";
+import { Dialog, DialogPanel, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Logo from "../assets/logo.png";
 
@@ -35,9 +35,9 @@ interface FooterNavigation {
 
 const navigation: NavigationItem[] = [
   { name: "Home", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Pricing", href: "#" },
-  { name: "Why TSG", href: "#" },
+  { name: "Features", href: "#features" },
+  { name: "Pricing", href: "#pricing" },
+  { name: "Why TSG", href: "#whytsg" },
 ];
 
 const secondaryFeatures = [
@@ -90,9 +90,9 @@ const tiers: Tier[] = [
     name: "Price",
     id: "tier-enterprise",
     href: "#",
-    priceMonthly: "1 TH",
+    priceMonthly: "1 ETH",
     description:
-      "nvest in your trading success with our straightforward, value-driven pricing. For just 1 ETH per month, you receive unparalleled service and support.",
+      "Invest in your trading success with our straightforward, value-driven pricing. For just 1 ETH per month, you receive unparalleled service and support.",
     features: [],
     featured: true,
   },
@@ -131,7 +131,7 @@ function classNames(...classes: string[]) {
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const [open, setOpen] = useState(false);
   return (
     <div className="bg-white">
       {/* Header */}
@@ -141,7 +141,7 @@ export default function Example() {
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img className="h-20 w-auto" src={Logo} alt="" />
             </a>
@@ -182,7 +182,7 @@ export default function Example() {
           <div className="fixed inset-0 z-50" />
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
+              <a href="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
                 <img className="h-8 w-auto" src={Logo} alt="" />
               </a>
@@ -340,7 +340,10 @@ export default function Example() {
         </div>
 
         {/* Pricing section */}
-        <div className="relative justify-center content-center isolate mt-32 bg-white px-6 sm:mt-32 lg:px-8">
+        <div
+          id="pricing"
+          className="relative justify-center content-center isolate mt-32 bg-white px-6 sm:mt-32 lg:px-8"
+        >
           <div
             className="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl"
             aria-hidden="true"
@@ -453,7 +456,7 @@ export default function Example() {
           </div>
         </div>
 
-        <div className="mx-auto max-w-7xl px-6 sm:mt-24 lg:px-8">
+        <div id="whytsg" className="mx-auto max-w-7xl px-6 sm:mt-24 lg:px-8">
           <div className="mx-auto mt-12 max-w-2xl text-center lg:max-w-4xl">
             <h2 className="text-base font-semibold leading-7 text-indigo-600">
               Why us
@@ -492,12 +495,126 @@ export default function Example() {
                 traders and take your trading to the next level.
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
-                <a
-                  href="#"
-                  className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Sign Up now
-                </a>
+                <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                  <button
+                    type="button"
+                    onClick={() => setOpen(true)}
+                    className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Sign Up now
+                  </button>
+
+                  <Transition.Root show={open} as={Fragment}>
+                    <Dialog
+                      as="div"
+                      className="relative z-10"
+                      onClose={setOpen}
+                    >
+                      <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                      >
+                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                      </Transition.Child>
+
+                      <div className=" fixed inset-0 z-10 w-screen overflow-y-auto">
+                        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                          <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            enterTo="opacity-100 translate-y-0 sm:scale-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                          >
+                            <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                              <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
+                                <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                                  Sign up today
+                                </h2>
+                              </div>
+                              <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+                                <form className="space-y-6" action="">
+                                  <div>
+                                    <label
+                                      htmlFor="email"
+                                      className="block text-sm font-medium leading-2 text-gray-900"
+                                    >
+                                      Email address
+                                    </label>
+                                    <div className="mt-2">
+                                      <input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        autoComplete="email"
+                                        required
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div>
+                                    <label
+                                      htmlFor="password"
+                                      className="block text-sm font-medium leading-2 text-gray-900"
+                                    >
+                                      Password
+                                    </label>
+                                    <div className="mt-2">
+                                      <input
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        autoComplete="current-password"
+                                        required
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div>
+                                    <label
+                                      htmlFor="password"
+                                      className="block text-sm font-medium leading-2 text-gray-900"
+                                    >
+                                      Confirm Password
+                                    </label>
+                                    <div className="mt-2">
+                                      <input
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        autoComplete="current-password"
+                                        required
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div>
+                                    <button
+                                      type="submit"
+                                      className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-indigo-600 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    >
+                                      Submit
+                                    </button>
+                                  </div>
+                                </form>
+                              </div>
+                            </Dialog.Panel>
+                          </Transition.Child>
+                        </div>
+                      </div>
+                    </Dialog>
+                  </Transition.Root>
+                </div>
               </div>
             </div>
 
